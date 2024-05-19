@@ -40,6 +40,13 @@ kubectl get pods
 You should see the `env-deployment` Deployment and four Nginx Pods in the running state.
 
 
+## Demo
+
+
+![rolling](https://github.com/Shreyank031/k8s-RollingUpdate-HorizontalPodAutoScale/assets/115367978/ffef8e6b-8e1c-4a3d-88f4-cf16ccaf47fa)
+
+
+
 ## Rolling Update
 
 The `env-deployment.yaml` manifest defines a rolling update strategy for the Deployment. When you update the Deployment, such as changing the Nginx image version or modifying the container configuration, Kubernetes will perform a rolling update without causing any downtime.
