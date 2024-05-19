@@ -8,7 +8,6 @@ This repository contains a Kubernetes Deployment manifest for deploying an Nginx
 - [Prerequisites](#prerequisites)
 - [Deployment](#deployment)
 - [Rolling Update](#rolling-update)
-- [Cleanup](#cleanup)
 
 ## Overview
 
@@ -47,8 +46,18 @@ The `env-deployment.yaml` manifest defines a rolling update strategy for the Dep
 
 ###  Here are the key parameters defined for the rolling update strategy:
 
-- `maxSurge: 1` : Allows one extra Pod to be created during the update process. The new ReplicaSet is created with one extra `Pod` running updated nginx:1.17 image. The old ReplicaSet will be as it is running 4 pods with nginx:1.16 version.
+- `maxSurge: 1` : Allows one extra Pod to be created during the update process. The `new ReplicaSet` is created with one extra `Pod` running updated nginx:1.17 image. The `original ReplicaSet` will be as it is running 4 pods with nginx:1.16 version. Totally 5 pods with 1 updated image and 4 with old image
+
+
+  ![rolling-first-pod](https://github.com/Shreyank031/k8s-RollingUpdate-HorizontalPodAutoScale/assets/115367978/703245ad-6ee5-4b0b-bcb9-ac164cc2b40f)
+
+  
 
 - `maxUnavailable: 0` : Ensures that all Pods are available during the update process. Assume if 3 pods are running out of 4 pods (the desired number of replicas), then k8s won't update. It's typically `4 - 0 = 4` where all the 4 pods should be up and running.
 
-- `minReadySeconds: 10` : Specifies that a new Pod should be ready for at least 10 seconds before considering it available. Then only the one of the pod in old ReplicaSet will be deleted automatically. Suppose if the pod is not running as expected in newly created ReplicaSet, then k8s waits for 10, checks in again waits, doesn't udpate if the pod is not running with new image.
+- `minReadySeconds: 10` : Specifies that a new Pod should be ready for at least 10 seconds before considering it available. Then only the one of the pod in `original ReplicaSet` will be deleted automatically. Suppose if the pod is not running as expected in newly created ReplicaSet, then k8s waits for 10, checks in again waits, doesn't udpate if the pod is not running with new image.
+
+
+**At the end when all the pods are updated in the `new ReplicaSet`, the last remaining pod inside `old/original Replicaset` will be terminated**
+
+![image](https://github.com/Shreyank031/k8s-RollingUpdate-HorizontalPodAutoScale/assets/115367978/bf8b2028-f7da-4890-adf3-da65c00ec501)
