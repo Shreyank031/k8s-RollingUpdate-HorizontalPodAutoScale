@@ -68,3 +68,5 @@ The `env-deployment.yaml` manifest defines a rolling update strategy for the Dep
 **At the end when all the pods are updated in the `new ReplicaSet`, the last remaining pod inside `old/original Replicaset` will be terminated**
 
 ![image](https://github.com/Shreyank031/k8s-RollingUpdate-HorizontalPodAutoScale/assets/115367978/bf8b2028-f7da-4890-adf3-da65c00ec501)
+
+## Don't forget to see `Horizontal Pod Autoscaller` [here](HorizontalPodAutoScalling/README.md)
