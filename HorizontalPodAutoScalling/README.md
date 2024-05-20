@@ -94,6 +94,10 @@ spec:
 - The autoscaling is based on the CPU utilization metric.
 - The target CPU utilization is set to 50%.
 
+![image](https://github.com/Shreyank031/k8s-RollingUpdate-HorizontalPodAutoScale/assets/115367978/c6d5ca90-c374-46c9-bdfb-bf1fc6c1785c)
+
+
+
 - The `minReplicas` field sets the minimum number of replicas that the HPA will maintain for the target resource (Deployment). In this case, it is set to 1, meaning that there will always be at least one replica (Pod) running.
 
 - The `maxReplicas` field sets the maximum number of replicas that the HPA can scale up to. In this case, it is set to 10, meaning that the HPA can scale the target Deployment up to a maximum of 10 replicas (Pods).
